@@ -7,8 +7,42 @@ test('amount of rows', () => {
     expect(newBoard.board.length).toBe(10);
 })
 
-test('return position function', () =>{
-    const cruiser = Ship(4);
+test('test horizontal positioning', () =>{
     const newBoard = GameBoard();
-    expect(newBoard.placeShip(5, 2, cruiser)).toStrictEqual(['', '', '!', '!', '!', '!', '', '', '', ''])
+    expect(newBoard.placeShipH(5, 2, 4)).toStrictEqual(['', '', '!', '!', '!', '!', '', '', '', ''])
+})
+
+// test('test if function is returning something', () => {
+//     const newBoard = GameBoard();
+//     expect(newBoard.placeShipV()).toStrictEqual(
+//         [
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//             ['', '', '', '', '', '', '', '', '', ''],
+//         ])
+// })
+
+test('test vertical positioning', () => {
+    const newBoard = GameBoard();
+    expect(newBoard.placeShipV(2,2,4)).toStrictEqual(
+        [
+            ['', '', '', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
+            ['', '', '!', '', '', '', '', '', '', ''],
+            ['', '', '!', '', '', '', '', '', '', ''],
+            ['', '', '!', '', '', '', '', '', '', ''],
+            ['', '', '!', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
+
+        ])
 })

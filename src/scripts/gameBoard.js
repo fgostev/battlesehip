@@ -26,22 +26,50 @@ const GameBoard = () => {
     // return the correct row
 
 
-const placeShip = (x, y, ship) => {
+const placeShipH = (x, y, ship) => {
 
     // change after to the interact with the module
         const row = board[x];
         const colStart = y;
         const colEnd = y + ship;
 
-        row.fill("ship", colStart, colEnd);
-
+// ship position and ship size not bigger than the array - in that case error
+        if(colEnd > row.length){
+            return "not acceptable position for the ship"
+        }else{
+            row.fill("!", colStart, colEnd);
+        }
         return row;
     }
+
+const placeShipV = (x, y, ship) => {
+        // const rowStart = board[x];
+        // const rowEnd = board[x + ship];
+        const colStart = board[y];
+        const colEnd = colStart + ship;
+
+        const rowStart = x ;
+        const rowEnd = x + ship;
+
+
+        if(rowEnd > board.length){
+            return "not acceptable position for the ship"
+        }
+        else{
+            board.forEach((row, indx)=> {
+                if(indx >= rowStart && indx < rowEnd){
+                    row[y] = "!";
+                }
+            })
+        }
+        return board;
+}
     
-    return {board, placeShip};
+    return {board, placeShipH, placeShipV};
 }
 
-const newBoard = GameBoard();
-console.log(newBoard.placeShip(2, 6, 4))
+// const newBoard = GameBoard();
+// console.log(newBoard.placeShipV(, 2, 8));
+// console.log(newBoard.board)
 
 export default GameBoard;
