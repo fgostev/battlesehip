@@ -12,22 +12,12 @@ test('test horizontal positioning', () =>{
     expect(newBoard.placeShipH(5, 2, 4)).toStrictEqual(['', '', '!', '!', '!', '!', '', '', '', ''])
 })
 
-// test('test if function is returning something', () => {
-//     const newBoard = GameBoard();
-//     expect(newBoard.placeShipV()).toStrictEqual(
-//         [
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//             ['', '', '', '', '', '', '', '', '', ''],
-//         ])
-// })
+test('error message if too big or too far off', () =>{
+    const newBoard = GameBoard();
+    expect(newBoard.placeShipH(2, 6, 5)).toBe("not acceptable position for the ship")
+})
+
+
 
 test('test vertical positioning', () => {
     const newBoard = GameBoard();
@@ -45,4 +35,9 @@ test('test vertical positioning', () => {
             ['', '', '', '', '', '', '', '', '', ''],
 
         ])
+})
+
+test('throw error message if too far off', () => {
+    const newBoard = GameBoard();
+    expect(newBoard.placeShipV(8,2,4)).toBe("not acceptable position for the ship")
 })

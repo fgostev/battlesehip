@@ -43,10 +43,7 @@ const placeShipH = (x, y, ship) => {
     }
 
 const placeShipV = (x, y, ship) => {
-        // const rowStart = board[x];
-        // const rowEnd = board[x + ship];
         const colStart = board[y];
-        const colEnd = colStart + ship;
 
         const rowStart = x ;
         const rowEnd = x + ship;
@@ -64,6 +61,7 @@ const placeShipV = (x, y, ship) => {
         }
         return board;
 }
+
     
     return {board, placeShipH, placeShipV};
 }
