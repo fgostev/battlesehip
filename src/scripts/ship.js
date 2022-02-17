@@ -1,12 +1,13 @@
-//  create a module ship
-// length - will be the length of the array(the ship)
-// hit - will be the points of the ship that is hit
-// sun - if all points of the ship are sunk than the ship is sunk
+
+
+// List of ships:
+//  4 - 1 slots, 3 - 2 slots, 2 - 3 slots, 1 - 4 slot 
+
+
 const Ship = (type) => {
 
-    let shipType = Array.from({length: (type - 1)}, () => 0);
+    let shipType = Array.from({length: (type)}, () => 0);
 
-    // add if miss return a message that missed
 
     const hit = (num) => {
         if(num > type || num <= 0)
@@ -18,25 +19,17 @@ const Ship = (type) => {
         }
         else{
         {   
-            shipType.splice(num - 1, 0, 1);
+            shipType.splice(num - 1, 1, 1);
             return shipType;
             }
         }
     }
 
-    const sunkOrNot = () =>{
-        return false;
+    const isSunk = () =>{
+        const sunk = !shipType.includes(0);
+        return sunk;
     }
 
-    return {type, hit, sunkOrNot};
+    return {type, hit, isSunk};
 }
-
-const cruiser = Ship(5);
-
-console.log(cruiser.hit(1));
-console.log(cruiser.hit(1));
-console.log(cruiser.hit(4));
-console.log(cruiser);
-
-
 export default Ship;
