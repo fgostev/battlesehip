@@ -1,5 +1,3 @@
-
-
 // List of ships:
 //  4 - 1 slots, 3 - 2 slots, 2 - 3 slots, 1 - 4 slot 
 

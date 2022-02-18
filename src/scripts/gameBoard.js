@@ -1,10 +1,7 @@
-// import  Ship from "./ship.js";
+import  Ship from "./ship.js";
 
-// create a 10 by 10 array for the game board
-// create ship placement by calling the ship function
-// figure out how to place ship - 
-        // if horizontally add + 10 to the placement
-        // if vertically as it is
+// create test for calling ship and checking the placement
+// update the ships
 
 
 //  dot equals miss
@@ -33,8 +30,9 @@ const placeShipH = (x, y, ship) => {
         const colStart = y;
         const colEnd = y + ship;
 
-// ship position and ship size not bigger than the array - in that case error
-        if(colEnd > row.length){
+        // || row[colStart + ship] === "!" || row[colEnd - 2] === "!" )
+
+        if( colEnd > row.length || row[colEnd] === "!" || row[colStart - 1] === "!"){
             return "not acceptable position for the ship"
         }else{
             row.fill("!", colStart, colEnd);
@@ -49,7 +47,8 @@ const placeShipV = (x, y, ship) => {
         const rowEnd = x + ship;
 
 
-        if(rowEnd > board.length){
+        if(rowEnd > board.length)
+    {
             return "not acceptable position for the ship"
         }
         else{
@@ -60,14 +59,22 @@ const placeShipV = (x, y, ship) => {
             })
         }
         return board;
+
+    }
+
+// function needs to accept coordinates and tell if the object was hit
+
+
+const receiveAttack = (x, y) => {
+    return x;
 }
 
     
-    return {board, placeShipH, placeShipV};
+    return {board, placeShipH, placeShipV, receiveAttack};
 }
 
-// const newBoard = GameBoard();
-// console.log(newBoard.placeShipV(, 2, 8));
+const newBoard = GameBoard();
+// console.log(newBoard.placeShipV(1, 2, 8));
 // console.log(newBoard.board)
 
 export default GameBoard;
