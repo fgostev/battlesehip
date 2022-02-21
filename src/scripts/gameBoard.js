@@ -1,4 +1,4 @@
-import  Ship from "./ship.js";
+// import  Ship from "./ship.js";
 
 // create test for calling ship and checking the placement
 // update the ships
@@ -20,19 +20,16 @@ const GameBoard = () => {
     // x = horizontal aka row
     // y = vertical aka column 
 
-    // return the correct row
-
 
 const placeShipH = (x, y, ship) => {
-
-    // change after to the interact with the module
         const row = board[x];
         const colStart = y;
         const colEnd = y + ship;
 
-        // || row[colStart + ship] === "!" || row[colEnd - 2] === "!" )
+        // review if need space 
 
-        if( colEnd > row.length || row[colEnd] === "!" || row[colStart - 1] === "!"){
+        if( colEnd > row.length || row[colEnd - 1] === "!" || row[colStart] === "!" 
+        || row[y] === "!"){
             return "not acceptable position for the ship"
         }else{
             row.fill("!", colStart, colEnd);
@@ -41,21 +38,23 @@ const placeShipH = (x, y, ship) => {
     }
 
 const placeShipV = (x, y, ship) => {
-        const colStart = board[y];
 
+        ship = ship - 1;
         const rowStart = x ;
         const rowEnd = x + ship;
 
-
-        if(rowEnd > board.length)
-    {
+        if( rowEnd >= board.length ||board[rowStart][y] === "!" || board[rowEnd][y] === "!")
+        {
             return "not acceptable position for the ship"
         }
         else{
             board.forEach((row, indx)=> {
-                if(indx >= rowStart && indx < rowEnd){
+            if(indx >= rowStart && indx <= rowEnd){
                     row[y] = "!";
                 }
+            else{
+                return "not acceptable position for the ship"
+            }
             })
         }
         return board;
@@ -73,8 +72,26 @@ const receiveAttack = (x, y) => {
     return {board, placeShipH, placeShipV, receiveAttack};
 }
 
-const newBoard = GameBoard();
-// console.log(newBoard.placeShipV(1, 2, 8));
-// console.log(newBoard.board)
+
+// testing ground to double check test
+
+
+// const newBoard = GameBoard();
+// console.log(newBoard.placeShipV(2, 2, 4));
+
+// bug with x position + ship more than 10
+
+
+// console.log(newBoard.placeShipV(2, 2, 1))
+// console.log(newBoard.board.length)
+
+// const newBoard = GameBoard();
+// const cruiser = 3;
+// const smallOne = 1;
+// newBoard.placeShipH(2, 3, cruiser);
+
+// console.log(newBoard.placeShipV(9,8,smallOne))
+
+// console.log(newBoard.board);
 
 export default GameBoard;

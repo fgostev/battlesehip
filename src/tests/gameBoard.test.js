@@ -44,7 +44,7 @@ test('throw error message if too far off', () => {
 
 test('test with calling a ship', () => {
     const newBoard = GameBoard();
-    const cruiser = Ship(4);
+    const cruiser = Ship(3);
     const smallOne = Ship(1);
     newBoard.placeShipV(2,2,cruiser.type);
     newBoard.placeShipV(0,0,smallOne.type);
@@ -56,7 +56,7 @@ test('test with calling a ship', () => {
             ['', '', '!', '', '', '', '', '', '', ''],
             ['', '', '!', '', '', '', '', '', '', ''],
             ['', '', '!', '', '', '', '', '', '', ''],
-            ['', '', '!', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', '', '', ''],
             ['', '', '', '', '', '', '', '', '', ''],
@@ -65,15 +65,46 @@ test('test with calling a ship', () => {
         ])
 })
 
-// FOCUS ON THE TEST
-// looks like the horizontal test works for now, double check details
 
-test('throw error if ship is placed on the same spot as another', () => {
+test('throw error if ship is placed on the same spot as another horizontal fun', () => {
     const newBoard = GameBoard();
     const cruiser = Ship(4);
     const smallOne = Ship(1);
 
     newBoard.placeShipH(2, 3, cruiser.type);
 
-    expect(newBoard.placeShipH(2,7,smallOne.type)).toBe("not acceptable position for the ship")
+    expect(newBoard.placeShipH(2,6,smallOne.type)).toBe("not acceptable position for the ship")
+})
+
+test('throw error if ship is placed on the same spot as another vertical fun', () => {
+    const newBoard = GameBoard();
+
+    const cruiser = Ship(4);
+    const smallOne = Ship(1);
+
+    newBoard.placeShipV(2,2,cruiser.type);
+
+    expect(newBoard.placeShipV(2,2,smallOne.type)).toBe("not acceptable position for the ship");
+})
+
+test('throw error if horizontal placed on vertical', () => {
+    const newBoard = GameBoard();
+
+    const cruiser = Ship(4);
+    const smallOne = Ship(1);
+
+    newBoard.placeShipV(2,2,cruiser.type);
+
+    expect(newBoard.placeShipH(2,2,smallOne.type)).toBe("not acceptable position for the ship");
+})
+
+test('throw error if vertical placed on horizontal', () => {
+    const newBoard = GameBoard();
+
+    const cruiser = Ship(4);
+    const smallOne = Ship(1);
+
+    newBoard.placeShipH(2,2,cruiser.type);
+
+    expect(newBoard.placeShipV(2,2,smallOne.type)).toBe("not acceptable position for the ship");
 })
