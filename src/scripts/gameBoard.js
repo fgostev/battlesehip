@@ -1,97 +1,141 @@
 // import  Ship from "./ship.js";
 
-// create test for calling ship and checking the placement
-// update the ships
+// import { cli } from "webpack";
 
 
 //  dot equals miss
 //  x equals hit
 //  ! equals have a ship
 
+const Ship = (size) => {
+
+    const hp = size;
+
+    const hit = () => {
+        size -= 1;
+        return size;
+    }
+
+    const isSunk = () =>{
+        const sunk = 0;
+        return size < sunk;
+    }
+
+    const shipId = undefined;
+
+    return {size, hit, isSunk, shipId, hp};
+}
+
 const GameBoard = () => {
     let board = [];
+    let ships = [];
     
     // add 10 rows
-    for(let i = 0; i < 10; i++){
-        const newRow = Array.from({length: (10)}, () => '');
-        board.push(newRow);
-    }
-    
-    // x = horizontal aka row
-    // y = vertical aka column 
+        // x = horizontal aka row
+        // y = vertical aka column 
 
+    for(let i = 0; i < 10; i++){
+        let x = i;
+        const newRow = Array.from({length: (10)}, () => ({empty: true, wasShot: false, positionX: i, positionY: undefined}));
+        board.push(newRow);
+            board.forEach(row => {
+                row.forEach((col, indx) => {
+                    col.positionY = indx
+                })
+            })
+        }
 
 const placeShipH = (x, y, ship) => {
         const row = board[x];
         const colStart = y;
-        const colEnd = y + ship;
+        const colEnd = y + ship.size;
 
-        // review if need space 
+        if( x >= board.length || colEnd >= board.length ||
+            row[colStart].empty === false || row[colEnd].empty === false)
+        {
+            return "not acceptable position for the ship";
+        } 
+        else{
+            row.forEach(col => {
+                if(col.positionY >= colStart && col.positionY <= colEnd && col.empty === true){
+                col.empty = false;
+                col.shipId = ships.length;
+                }
+            })
+            ship.shipId = ships.length;
+            ships.push(ship);
 
-        if( colEnd > row.length || row[colEnd - 1] === "!" || row[colStart] === "!" 
-        || row[y] === "!"){
-            return "not acceptable position for the ship"
-        }else{
-            row.fill("!", colStart, colEnd);
         }
-        return row;
-    }
+    return row;
+}
 
 const placeShipV = (x, y, ship) => {
 
-        ship = ship - 1;
+        const shipLength = ship.size;
         const rowStart = x ;
-        const rowEnd = x + ship;
+        const rowEnd = x + shipLength;
+        const colEnd = y + ship.size;
 
-        if( rowEnd >= board.length ||board[rowStart][y] === "!" || board[rowEnd][y] === "!")
+        if( rowEnd >= board.length || colEnd >= board.length ||
+            board[rowStart][y].empty === false || board[rowEnd][y].empty === false)
         {
-            return "not acceptable position for the ship"
+            return "not acceptable position for the ship";
         }
         else{
             board.forEach((row, indx)=> {
-            if(indx >= rowStart && indx <= rowEnd){
-                    row[y] = "!";
+                    if(indx >= rowStart && indx <= rowEnd){
+                    row[y].empty = false;
                 }
-            else{
-                return "not acceptable position for the ship"
-            }
             })
-        }
-        return board;
-
     }
 
-// function needs to accept coordinates and tell if the object was hit
+    return board;
+}
 
+const areAllShipsSunk = () => {
+    let shipsSunk = 0;
+
+        ships.forEach( ship => {
+            if(ship.isSunk() === true){
+                shipsSunk += 1; 
+            }
+        })
+    return shipsSunk === ships.length;
+
+}
 
 const receiveAttack = (x, y) => {
-    return x;
+    const shootingPosition = board[x][y];
+    if(shootingPosition.empty  === true || shootingPosition.wasShot === true){
+        shootingPosition.wasShot = true;
+        return "miss!";
+    }else{
+        shootingPosition.wasShot = true;
+        const damagedShip = ships[shootingPosition.shipId];
+        damagedShip.hp = damagedShip.hit();
+        areAllShipsSunk();
+        return `ship got hit!`;
+    }
+
 }
 
     
-    return {board, placeShipH, placeShipV, receiveAttack};
+return {board, placeShipH, placeShipV, ships, receiveAttack, areAllShipsSunk};
 }
 
+// const gameBoard = GameBoard();
 
-// testing ground to double check test
+// const newShip = Ship(0);
+// const newShip2 = Ship(2);
+
+// gameBoard.placeShipH(0, 0, newShip);
+// gameBoard.placeShipH(0, 6, newShip2);
+// gameBoard.receiveAttack(0, 0);
+// console.log(gameBoard.ships[0].isSunk());
+// console.log(gameBoard.receiveAttack(2, 6))
+// console.log(gameBoard.board[2][6]);
+
+// console.log(gameBoard.areAllShipsSunk())
 
 
-// const newBoard = GameBoard();
-// console.log(newBoard.placeShipV(2, 2, 4));
-
-// bug with x position + ship more than 10
-
-
-// console.log(newBoard.placeShipV(2, 2, 1))
-// console.log(newBoard.board.length)
-
-// const newBoard = GameBoard();
-// const cruiser = 3;
-// const smallOne = 1;
-// newBoard.placeShipH(2, 3, cruiser);
-
-// console.log(newBoard.placeShipV(9,8,smallOne))
-
-// console.log(newBoard.board);
-
-export default GameBoard;
+export default GameBoard; 

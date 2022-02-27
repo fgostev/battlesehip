@@ -1,33 +1,28 @@
 // List of ships:
-//  4 - 1 slots, 3 - 2 slots, 2 - 3 slots, 1 - 4 slot 
 
+// 1	Carrier	5
+// 2	Battleship	4
+// 3	Cruiser	3
+// 4	Submarine	3
+// 5	Destroyer	2
 
-const Ship = (type) => {
+const Ship = (size) => {
 
-    let shipType = Array.from({length: (type)}, () => 0);
+    const hp = size;
 
-
-    const hit = (num) => {
-        if(num > type || num <= 0)
-        {
-            return "missed";
-        }
-        else if(shipType[num - 1] === 1){
-            return "already shot";
-        }
-        else{
-        {   
-            shipType.splice(num - 1, 1, 1);
-            return shipType;
-            }
-        }
+    const hit = () => {
+        size -= 1;
+        return size;
     }
 
     const isSunk = () =>{
-        const sunk = !shipType.includes(0);
-        return sunk;
+        const sunk = 0;
+        return size < sunk;
     }
 
-    return {type, hit, isSunk};
+    const shipId = undefined;
+
+    return {size, hit, isSunk, shipId, hp};
 }
+
 export default Ship;
