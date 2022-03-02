@@ -7,24 +7,6 @@
 //  x equals hit
 //  ! equals have a ship
 
-const Ship = (size) => {
-
-    const hp = size;
-
-    const hit = () => {
-        size -= 1;
-        return size;
-    }
-
-    const isSunk = () =>{
-        const sunk = 0;
-        return size < sunk;
-    }
-
-    const shipId = undefined;
-
-    return {size, hit, isSunk, shipId, hp};
-}
 
 const GameBoard = () => {
     let board = [];
@@ -122,6 +104,8 @@ const receiveAttack = (x, y) => {
     
 return {board, placeShipH, placeShipV, ships, receiveAttack, areAllShipsSunk};
 }
+
+
 
 // const gameBoard = GameBoard();
 
