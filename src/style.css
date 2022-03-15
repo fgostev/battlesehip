@@ -1,10 +1,45 @@
 body{
     margin: 0;
     min-height: 100vh;
-    background: url(../src/imgs/BG_1.jpg) no-repeat center center fixed; 
+    background: url(../src/imgs/BG_1.jpeg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Montserrat', sans-serif;  
+}
+
+header{
+    text-align: center;
+}
+
+#boardContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(10, 0fr);
+    padding-right: 20px;
+}
+
+.grid{
+    height: 2rem;
+    width: 2rem;
+    background-color: #555;
+    border: 1px solid rgba(80, 71, 71, 0.918);
+}
+
+[data-empty="false"]{
+    background-color: red;
+}
+
+[data-was-shot="true"]{
+    background-color: green;
+}
+
+[data-damaged="true"]{
+    background-color: palevioletred;
 }
