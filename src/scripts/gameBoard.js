@@ -99,7 +99,7 @@ const receiveAttack = (x, y) => {
         const damagedShip = ships[shootingPosition.shipId];
         damagedShip.hp = damagedShip.hit();
         areAllShipsSunk();
-        return `ship got hit! Left ${damagedShip.hp} hp! The ship is dead = ${damagedShip.isSunk()}`;
+        return `ship ${damagedShip.shipId} got hit! Left ${damagedShip.hp} hp! The ship is dead = ${damagedShip.isSunk()}`;
     }
 }
 

@@ -24,6 +24,7 @@ const createBoard = (player) => {
         grid.classList = `grid ${player}`;
         grid.dataset.x = `${board[i].positionX}`;
         grid.dataset.y = `${board[i].positionY}`;
+        grid.dataset.wasShot = false;
         container.append(grid);
     }
     
