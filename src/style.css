@@ -53,3 +53,35 @@ header{
     background-color: palevioletred;
 }
 
+/* win modal */
+
+.winContainer{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0; 
+    top: 0; 
+    height: 100%;
+    width: 100%; 
+    overflow: auto; 
+    color: rgb(75, 120, 115);
+    animation-name: modalopen;
+    animation-duration: 0.5s; 
+    background-color: rgba(162, 157, 156);
+}
+  
+#winContent{
+    background-color: #8c6161be;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin: auto;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+    0 7px 20px 0 rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    font-family: 'Just Another Hand', cursive;
+    border-radius: 10px;
+  }
+

@@ -11,16 +11,11 @@ import {player2} from "./game";
 const randomizedAttack = (arr) => Math.floor(Math.random() * arr.length);
 
 const AI = (arr) => {
-    // let possibleTargets = player1.board.flat(1);
-    // possibleTargets = player1.board.flat(1);
+
     const attack = randomizedAttack(arr);
 
     const shotArray = arr[attack];
      arr.splice(attack, 1);
-    console.log(arr);
-
-    console.log(shotArray);
-
 
     return shotArray;
 }

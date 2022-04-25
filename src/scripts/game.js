@@ -1,4 +1,5 @@
 import GameBoard from "./gameBoard";
+import {winMessage} from './dom.js';
 import Player from "./player";
 import Ship from "./ship";
 import AI from "./AI.js"
@@ -67,7 +68,6 @@ displayShips(player1,"human");
 
 let possibleTargets = player1.board.flat(1);
 
-
 function displayAttacks(){
     const x = this.dataset.x;
     const y = this.dataset.y;
@@ -76,6 +76,18 @@ function displayAttacks(){
 
     player2.receiveAttack(x, y);
     player1.receiveAttack(attackAI.positionX, attackAI.positionY);
+// check the display function
+
+
+const winContent = document.getElementsByClassName("winContainer")[0];    
+const winMessage =  document.getElementById("playerWinMessage")
+    if(player1.areAllShipsSunk()){
+        winContent.style.display = "block";
+        winMessage.textContent = `Player 2 WON!`;
+    }else if(player2.areAllShipsSunk()){
+        winContent.style.display = "block";
+        winMessage.textContent = `Player 1 WON!`;
+    }
 
     displayShips(player1, "human")
     displayShips(player2, "computer");
@@ -83,8 +95,6 @@ function displayAttacks(){
     disableUsedGrid();
 
     
-
-
 }
 
 function disableUsedGrid(){
