@@ -1,7 +1,4 @@
-// import  Ship from "./ship.js";
-
-// import { cli } from "webpack";
-
+import  Ship from "./ship.js"   
 
 //  dot equals miss
 //  x equals hit
@@ -18,7 +15,7 @@ const GameBoard = () => {
 
     for(let i = 0; i < 10; i++){
         let x = i;
-        const newRow = Array.from({length: (10)}, () => ({empty: true, wasShot: false, positionX: i, positionY: undefined}));
+        const newRow = Array.from({length: (10)}, () => ({empty: true, wasShot: false, damaged: false, positionX: i, positionY: undefined}));
         board.push(newRow);
             board.forEach(row => {
                 row.forEach((col, indx) => {
@@ -44,12 +41,14 @@ const placeShipH = (x, y, ship) => {
                 col.shipId = ships.length;
                 }
             })
-            ship.shipId = ships.length;
             ships.push(ship);
-
+            ship.shipId = ships.length;
+            // ship.shipId = col.shipId;
         }
     return row;
 }
+
+// check here to adjust ship Id add to the board!!!! 
 
 const placeShipV = (x, y, ship) => {
 
@@ -67,8 +66,11 @@ const placeShipV = (x, y, ship) => {
             board.forEach((row, indx)=> {
                     if(indx >= rowStart && indx <= rowEnd){
                     row[y].empty = false;
+                    row[y].shipId = ships.length;
                 }
             })
+            ships.push(ship);
+            ship.shipId = ships.length;
     }
 
     return board;
@@ -93,33 +95,17 @@ const receiveAttack = (x, y) => {
         return "miss!";
     }else{
         shootingPosition.wasShot = true;
+        shootingPosition.damaged = true;
         const damagedShip = ships[shootingPosition.shipId];
         damagedShip.hp = damagedShip.hit();
         areAllShipsSunk();
-        return `ship got hit!`;
+        return `ship ${damagedShip.shipId} got hit! Left ${damagedShip.hp} hp! The ship is dead = ${damagedShip.isSunk()}`;
     }
-
 }
+
 
     
 return {board, placeShipH, placeShipV, ships, receiveAttack, areAllShipsSunk};
 }
-
-
-
-// const gameBoard = GameBoard();
-
-// const newShip = Ship(0);
-// const newShip2 = Ship(2);
-
-// gameBoard.placeShipH(0, 0, newShip);
-// gameBoard.placeShipH(0, 6, newShip2);
-// gameBoard.receiveAttack(0, 0);
-// console.log(gameBoard.ships[0].isSunk());
-// console.log(gameBoard.receiveAttack(2, 6))
-// console.log(gameBoard.board[2][6]);
-
-// console.log(gameBoard.areAllShipsSunk())
-
 
 export default GameBoard; 

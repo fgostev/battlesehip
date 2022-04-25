@@ -11,9 +11,8 @@ import Ship from "./ship";
 
 const Player = (name) => {        
     const boardObject = GameBoard();
-    const board = boardObject.board;
+    const board = boardObject.board.flat(1);
     return {name, board};
 }
-
 
 export default Player;
