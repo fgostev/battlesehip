@@ -3,6 +3,7 @@ import {winMessage} from './dom.js';
 import Player from "./player";
 import Ship from "./ship";
 import AI from "./AI.js"
+import {selectionBoard, shipSelectionEventListeners} from "./shipPlacement";
 
 
 // now need to work on storage all the attacks
@@ -15,6 +16,9 @@ import AI from "./AI.js"
 // 1 - Battleship 4
 //  2- Destroyer 3
 // 1 - Patrol 2
+
+// !!!!!!!
+
 
 const shipPlacement = () => {
     const newBoard = GameBoard();
@@ -38,32 +42,33 @@ const shipPlacement = () => {
     return newBoard;   
 }
 
+
 const player1 = shipPlacement();
 const player2 = shipPlacement();
 
-
-
-const game = () => {
- 
-
-    const displayShips = (playerBoard, playerGrid) => {
-        const domBoard = document.getElementsByClassName(playerGrid);
-        const boardFlat = playerBoard.board.flat(1);
-        
-        boardFlat.forEach((grid, indx) => {
-        if(boardFlat[indx].empty === false && boardFlat[indx].damaged !== true){
-                domBoard[indx].dataset.empty = false;
-            }
-        else if(boardFlat[indx].wasShot === true && boardFlat[indx].damaged !== true){
-            domBoard[indx].dataset.wasShot = true;
+function displayShips (playerBoard, playerGrid) {
+    const domBoard = document.getElementsByClassName(playerGrid);
+    const boardFlat = playerBoard.board.flat(1);
+    
+    boardFlat.forEach((grid, indx) => {
+    if(boardFlat[indx].empty === false && boardFlat[indx].damaged !== true){
+            domBoard[indx].dataset.empty = false;
         }
-        else if(boardFlat[indx].damaged === true){
-            domBoard[indx].dataset.damaged = true;
-        }
-    })
+    else if(boardFlat[indx].wasShot === true && boardFlat[indx].damaged !== true){
+        domBoard[indx].dataset.wasShot = true;
+    }
+    else if(boardFlat[indx].damaged === true){
+        domBoard[indx].dataset.damaged = true;
+    }
+})
 }
 
-displayShips(player1,"human");
+const game = () => {
+
+    shipSelectionEventListeners();
+
+    displayShips(player1,"human");
+
 
 
 let possibleTargets = player1.board.flat(1);
@@ -121,4 +126,4 @@ listenerBoard();
 }
 
 
-export {game, player1, player2};
+export {game, player1, player2, displayShips};

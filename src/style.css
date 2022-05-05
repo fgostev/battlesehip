@@ -13,8 +13,38 @@ header{
     text-align: center;
 }
 
+/* game selection */
+
+#startContainer{
+    display: flex;
+    justify-content: left;
+ }
+
+ #selectBoard{
+     padding-left: 5%;
+ }
+
+ .select:hover{
+    background-color:red;
+ }
+
+ .shipSelect{
+     display: flex;
+ }
+
+.part{
+    border: 1px solid  rgba(80, 71, 71, 0.918);
+    height: 2rem;
+    width: 2rem;
+    background-color: rgb(112, 108, 108);
+    margin-top: 10px;
+}
+
+/* game */
+
 #boardContainer{
     display:flex;
+    /* display: none; */
     justify-content: center;
     align-items: center;
 }
@@ -39,6 +69,11 @@ header{
 .human + [data-damaged="true"]{
     background-color: rgb(10, 10, 10);
 }
+
+.select + [data-empty="false"]{
+    background-color: red;
+}
+
 
 
 [data-was-shot="true"]{
