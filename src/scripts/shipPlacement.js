@@ -37,7 +37,7 @@ function dragDrop(){
 
  const x = this.dataset.x;
  const y = this.dataset.y;
- selectionBoard.placeShipH(parseInt(x), parseInt(y), testShip);
+ selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
  displayShips(selectionBoard, "select");
 
  console.log(selectionBoard);
@@ -60,14 +60,15 @@ function shipSelectionEventListeners(){
     })
 }
 
+let selectedShip = 0;
+
 function dragStart(){
-    console.log('start');
-    return this.children.length - 1
+    selectedShip = Ship(this.children.length - 2);
+    // console.log(selectedShip);
 }
 
 function dragEnd(){
-    console.log('end');
-}
+ }
 
 
 export {selectionBoard, shipSelectionEventListeners};
