@@ -12,17 +12,20 @@ const createHeader = () => {
 
 const shipGenerator = (text ,num) => {
     const ship = document.createElement('div');
-    ship.classList = `shipSelect`
+    ship.classList = `shipSelect`;
+
     const para = document.createElement('p');
     para.textContent = text + "x";
     para.classList = "amountDescription";
+    para.draggable = false;
     ship.append(para);
-    ship.draggable = true;
+    
     for(let i = 0; i < num; i++) {
       const part = document.createElement('div');
       part.classList = `part length${num}`;
       ship.append(part);
     };
+    ship.draggable = true;
  return ship;
 }
 

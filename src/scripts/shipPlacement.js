@@ -4,13 +4,11 @@ import GameBoard from "./gameBoard";
 import { displayShips } from "./game";
 import Ship from "./ship";
 
-// first part of drag and drop completed
-// now need to figure out how to create ships based on the figure
-// need to figure out how to do the Vertical and the limit on hom many
-
+// fix the glitch of the text dragable
+// make the vertical placing
+// fix the glitch with where is selected from
 
 const selectionBoard = GameBoard();
-const testShip = Ship(3);
 console.log(selectionBoard);
 
 
@@ -21,25 +19,31 @@ const selectBoard = document.getElementsByClassName('select');
 
 function dragOver(e){
     e.preventDefault();
-    console.log('over')
+    // console.log(this);
 }
 
 function dragEnter(e){
     e.preventDefault();
+    this.classList.add("over");
+
+    console.log(this.dataset);
     console.log("enter");
+    console.log(selectedShip.size);
 }
 
 function dragLeave(){
+    this.classList.toggle("over");
     console.log('leave')
 }
 
 function dragDrop(){
+this.classList.toggle("over");
 
  const x = this.dataset.x;
  const y = this.dataset.y;
  selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
  displayShips(selectionBoard, "select");
-
+console.log(x, y);
  console.log(selectionBoard);
 }
 
@@ -61,11 +65,15 @@ function shipSelectionEventListeners(){
 }
 
 let selectedShip = 0;
+let selectedShipPart = 0;
 
 function dragStart(){
-    selectedShip = Ship(this.children.length - 2);
-    // console.log(selectedShip);
-}
+    selectedShip = Ship(this.children.length - 1);
+     selectedShipPart = this.children[0];
+    
+    console.log(selectedShipPart);
+}    
+
 
 function dragEnd(){
  }
