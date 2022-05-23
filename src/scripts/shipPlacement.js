@@ -1,10 +1,16 @@
 // figure out how to highlight and storage the ship placement;
 
+// may update:
+// add as well updated count on how many ships can place. Update the paragraphs for each ship
+
+
+
+
 import GameBoard from "./gameBoard";
 import { displayShips } from "./game";
 import Ship from "./ship";
 
-// fix the glitch of the text dragable
+// fix the glitch of the text draggable
 // make the vertical placing
 // fix the glitch with where is selected from
 
@@ -15,36 +21,49 @@ console.log(selectionBoard);
 
 const ships  = document.getElementsByClassName('shipSelect');
 const selectBoard = document.getElementsByClassName('select');
+// //////////
+
+
+
+function makeDraggable(){
+
+    const shipsOnBoard = document.querySelectorAll('[data-empty]');
+
+    Array.from(shipsOnBoard).forEach(ship => {
+        ship.draggable = true;
+        ship.classList = 'shipSelect';
+        ships  = document.getElementsByClassName('shipSelect');
+    })
+
+}
+
+
 
 
 function dragOver(e){
     e.preventDefault();
-    // console.log(this);
 }
 
 function dragEnter(e){
     e.preventDefault();
     this.classList.add("over");
-
-    console.log(this.dataset);
-    console.log("enter");
-    console.log(selectedShip.size);
 }
 
 function dragLeave(){
     this.classList.toggle("over");
     console.log('leave')
+     
 }
 
 function dragDrop(){
-this.classList.toggle("over");
+    this.classList.toggle("over");
 
- const x = this.dataset.x;
- const y = this.dataset.y;
- selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
- displayShips(selectionBoard, "select");
-console.log(x, y);
- console.log(selectionBoard);
+    const x = this.dataset.x;
+    const y = this.dataset.y;
+    selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
+    displayShips(selectionBoard, "select");
+
+    makeDraggable();
 }
 
 function shipSelectionEventListeners(){
@@ -65,13 +84,12 @@ function shipSelectionEventListeners(){
 }
 
 let selectedShip = 0;
-let selectedShipPart = 0;
+
+
+// test this in a biy
 
 function dragStart(){
-    selectedShip = Ship(this.children.length - 1);
-     selectedShipPart = this.children[0];
-    
-    console.log(selectedShipPart);
+    selectedShip = Ship(this.children.length - 2);
 }    
 
 

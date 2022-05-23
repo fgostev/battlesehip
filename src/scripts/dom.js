@@ -33,7 +33,7 @@ const shipGenerator = (text ,num) => {
 const createInitialPage = () => {
     const startContainer =  document.createElement('div');
     startContainer.id = "startContainer";
-    const boardSelect = createBoard("select");
+    const boardSelect = createBoard('select');
 
     const shipReferenceContainer = document.createElement('div');
     shipReferenceContainer.id = "shipDescriptionContainer";

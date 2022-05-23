@@ -17,8 +17,7 @@ header{
 
 #startContainer{
     display: flex;
-    justify-content: left;
- }
+ } 
 
  #selectBoard{
      padding-left: 5%;
@@ -28,17 +27,18 @@ header{
     background-color:red;
  }
 
- .shipSelect{
-     display: flex;
+.shipSelect{
+     display: flex; 
  }
 
 .part{
     border: 1px solid  rgba(80, 71, 71, 0.918);
-    height: 2rem;
-    width: 2rem;
+    height: 30px;
+    width: 30px;
     background-color: rgb(112, 108, 108);
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
+
 
 /* game */
 
