@@ -10,7 +10,48 @@ const createHeader = () => {
     return header;
 }
 
+const shipGenerator = (text ,num) => {
+    const ship = document.createElement('div');
+    ship.classList = `shipSelect`;
 
+    const para = document.createElement('p');
+    para.textContent = text + "x";
+    para.classList = "amountDescription";
+    para.draggable = false;
+    ship.append(para);
+    
+    for(let i = 0; i < num; i++) {
+      const part = document.createElement('div');
+      part.classList = `part length${num}`;
+      ship.append(part);
+    };
+    ship.draggable = true;
+ return ship;
+}
+
+
+const createInitialPage = () => {
+    const startContainer =  document.createElement('div');
+    startContainer.id = "startContainer";
+    const boardSelect = createBoard('select');
+
+    const directionalBtn = document.createElement('button');
+    directionalBtn.textContent = "HORIZONTAL"
+    directionalBtn.id = "directionalBtn";
+
+    const shipReferenceContainer = document.createElement('div');
+    shipReferenceContainer.id = "shipDescriptionContainer";
+    const text = document.createElement('p');
+
+    const carrier = shipGenerator(1,5);
+    const battleship = shipGenerator(1,4);
+    const destroyer = shipGenerator(2,3)
+    const patrol = shipGenerator(3,2);
+
+    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol);
+    startContainer.append(boardSelect, shipReferenceContainer);
+    return startContainer;
+}
 
 const createBoard = (player) => {
     const container = document.createElement('div');
@@ -74,14 +115,18 @@ function winMessage(){
 
 const pageLoad = () => {
     const content = document.getElementById('content');
+    // start page
+    const shipSelection = createInitialPage(); 
+    // modal
     const winModal = winMessage("test");
     const header = createHeader();
+    // game
     const boardContainer = document.createElement("container");
     const board1 = createBoard("human");
     const board2 =  createBoard("computer")
     boardContainer.id = "boardContainer";
     boardContainer.append(board1, board2);    
-    content.append(winModal, header, boardContainer);
+    content.append(winModal, header, shipSelection, boardContainer);
 }
 
 

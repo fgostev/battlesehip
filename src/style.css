@@ -13,8 +13,38 @@ header{
     text-align: center;
 }
 
+/* game selection */
+
+#startContainer{
+    display: flex;
+ } 
+
+ #selectBoard{
+     padding-left: 5%;
+ }
+
+ .select:hover{
+    background-color:red;
+ }
+
+.shipSelect{
+     display: flex; 
+ }
+
+.part{
+    border: 1px solid  rgba(80, 71, 71, 0.918);
+    height: 30px;
+    width: 30px;
+    background-color: rgb(112, 108, 108);
+    /* margin-top: 10px; */
+}
+
+
+/* game */
+
 #boardContainer{
     display:flex;
+    /* display: none; */
     justify-content: center;
     align-items: center;
 }
@@ -32,14 +62,17 @@ header{
     border: 1px solid rgba(80, 71, 71, 0.918);
 }
 
-.human + [data-empty="false"]{
+.human[data-empty="false"]{
     background-color: red;
 }
 
-.human + [data-damaged="true"]{
+.human[data-damaged="true"]{
     background-color: rgb(10, 10, 10);
 }
 
+.select[data-empty="false"]{
+    background-color: red;
+}
 
 [data-was-shot="true"]{
     background-color: green;
@@ -85,3 +118,6 @@ header{
     border-radius: 10px;
   }
 
+.over {
+    background-color: green;   
+}

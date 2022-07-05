@@ -3,6 +3,7 @@ import {winMessage} from './dom.js';
 import Player from "./player";
 import Ship from "./ship";
 import AI from "./AI.js"
+import {selectionBoard, shipSelectionEventListeners} from "./shipPlacement";
 
 
 // now need to work on storage all the attacks
@@ -16,6 +17,9 @@ import AI from "./AI.js"
 //  2- Destroyer 3
 // 1 - Patrol 2
 
+// !!!!!!!
+
+
 const shipPlacement = () => {
     const newBoard = GameBoard();
     const carrier = Ship(4);
@@ -26,10 +30,10 @@ const shipPlacement = () => {
     const patrol1 = Ship(1);
     const patrol2 = Ship(1);
     const patrol3 = Ship(1);
-    newBoard.placeShipV(2,4, carrier);
-    newBoard.placeShipV(1,6, battleship);
-    newBoard.placeShipH(8,6, destroyer1);
-    newBoard.placeShipH(0,1, destroyer2);
+    newBoard.placeShipV(0,0, carrier);
+    newBoard.placeShipV(2,9, battleship);
+    newBoard.placeShipH(2,5, destroyer1);
+    newBoard.placeShipH(0,3, destroyer2);
     newBoard.placeShipV(5,2, destroyer3);
     newBoard.placeShipV(5,7, patrol1);
     newBoard.placeShipH(0,8, patrol2);
@@ -38,32 +42,33 @@ const shipPlacement = () => {
     return newBoard;   
 }
 
+
 const player1 = shipPlacement();
 const player2 = shipPlacement();
 
-
-
-const game = () => {
- 
-
-    const displayShips = (playerBoard, playerGrid) => {
-        const domBoard = document.getElementsByClassName(playerGrid);
-        const boardFlat = playerBoard.board.flat(1);
-        
-        boardFlat.forEach((grid, indx) => {
-        if(boardFlat[indx].empty === false && boardFlat[indx].damaged !== true){
-                domBoard[indx].dataset.empty = false;
-            }
-        else if(boardFlat[indx].wasShot === true && boardFlat[indx].damaged !== true){
-            domBoard[indx].dataset.wasShot = true;
+function displayShips (playerBoard, playerGrid) {
+    const domBoard = document.getElementsByClassName(playerGrid);
+    const boardFlat = playerBoard.board.flat(1);
+    
+    boardFlat.forEach((grid, indx) => {
+    if(boardFlat[indx].empty === false && boardFlat[indx].damaged !== true){
+            domBoard[indx].dataset.empty = false;
         }
-        else if(boardFlat[indx].damaged === true){
-            domBoard[indx].dataset.damaged = true;
-        }
-    })
+    else if(boardFlat[indx].wasShot === true && boardFlat[indx].damaged !== true){
+        domBoard[indx].dataset.wasShot = true;
+    }
+    else if(boardFlat[indx].damaged === true){
+        domBoard[indx].dataset.damaged = true;
+    }
+})
 }
 
-displayShips(player1,"human");
+const game = () => {
+
+    shipSelectionEventListeners();
+
+    displayShips(player1,"human");
+
 
 
 let possibleTargets = player1.board.flat(1);
@@ -121,4 +126,4 @@ listenerBoard();
 }
 
 
-export {game, player1, player2};
+export {game, player1, player2, displayShips};
