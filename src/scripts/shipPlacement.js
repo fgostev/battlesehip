@@ -1,17 +1,14 @@
 // figure out how to highlight and storage the ship placement;
 
+// GLITCH when trying to place on position 0 , 0  - try to figure out why the square dissapears. 
+
+
 import GameBoard from "./gameBoard";
 import { displayShips } from "./game";
 import Ship from "./ship";
 
-// fix the glitch of the text dragable
-// make the vertical placing
-// fix the glitch with where is selected from
 
 const selectionBoard = GameBoard();
-console.log(selectionBoard);
-
-
 
 const ships  = document.getElementsByClassName('shipSelect');
 const selectBoard = document.getElementsByClassName('select');
@@ -37,17 +34,39 @@ function dragLeave(){
 }
 
 function dragDrop(){
+    
 this.classList.toggle("over");
 
  const x = this.dataset.x;
  const y = this.dataset.y;
- selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
- displayShips(selectionBoard, "select");
-console.log(x, y);
- console.log(selectionBoard);
+
+ const directionalBtn = document.getElementById('directionalBtn');
+
+ if(directionalBtn.textContent === "HORIZONTAL"){
+    selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
+    displayShips(selectionBoard, "select");
+ }else{
+    selectionBoard.placeShipV(parseInt(x), parseInt(y), selectedShip);
+    displayShips(selectionBoard, "select");
+    // console.log(selectedShip);
+}
+
+console.log(selectionBoard);
+
+
+}
+
+function changeDirection(){
+    if(this.textContent === "VERTICAL"){
+        this.textContent = "HORIZONTAL";
+    }else{
+        this.textContent = "VERTICAL";
+    }
 }
 
 function shipSelectionEventListeners(){
+    const directionalBtn = document.getElementById('directionalBtn')
+    directionalBtn.addEventListener('click', changeDirection);
 
     for(const grid of selectBoard){
         grid.addEventListener('dragover', dragOver);
@@ -69,9 +88,9 @@ let selectedShipPart = 0;
 
 function dragStart(){
     selectedShip = Ship(this.children.length - 2);
-     selectedShipPart = this.children[0];
+    selectedShipPart = this.children[0];
     
-    console.log(selectedShipPart);
+    console.log(selectedShip);
 }    
 
 

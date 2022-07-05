@@ -30,9 +30,9 @@ const shipPlacement = () => {
     const patrol1 = Ship(1);
     const patrol2 = Ship(1);
     const patrol3 = Ship(1);
-    newBoard.placeShipV(2,4, carrier);
+    newBoard.placeShipV(0,0, carrier);
     newBoard.placeShipV(1,6, battleship);
-    newBoard.placeShipH(8,6, destroyer1);
+    newBoard.placeShipH(0,6, destroyer1);
     newBoard.placeShipH(0,1, destroyer2);
     newBoard.placeShipV(5,2, destroyer3);
     newBoard.placeShipV(5,7, patrol1);

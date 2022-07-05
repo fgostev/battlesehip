@@ -62,19 +62,17 @@ header{
     border: 1px solid rgba(80, 71, 71, 0.918);
 }
 
-.human + [data-empty="false"]{
+.human[data-empty="false"]{
     background-color: red;
 }
 
-.human + [data-damaged="true"]{
+.human[data-damaged="true"]{
     background-color: rgb(10, 10, 10);
 }
 
-.select + [data-empty="false"]{
+.select[data-empty="false"]{
     background-color: red;
 }
-
-
 
 [data-was-shot="true"]{
     background-color: green;

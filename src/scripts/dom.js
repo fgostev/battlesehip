@@ -35,6 +35,10 @@ const createInitialPage = () => {
     startContainer.id = "startContainer";
     const boardSelect = createBoard('select');
 
+    const directionalBtn = document.createElement('button');
+    directionalBtn.textContent = "HORIZONTAL"
+    directionalBtn.id = "directionalBtn";
+
     const shipReferenceContainer = document.createElement('div');
     shipReferenceContainer.id = "shipDescriptionContainer";
     const text = document.createElement('p');
@@ -44,7 +48,7 @@ const createInitialPage = () => {
     const destroyer = shipGenerator(2,3)
     const patrol = shipGenerator(3,2);
 
-    shipReferenceContainer.append(text, carrier, battleship, destroyer, patrol);
+    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol);
     startContainer.append(boardSelect, shipReferenceContainer);
     return startContainer;
 }
