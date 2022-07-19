@@ -1,6 +1,8 @@
-// figure out how to highlight and storage the ship placement;
+// need to create a function that:
+// tracks the amount of each ship placed
+// once hits a specific amounts of ships placed - no more ships
+// while placing each ship the number in front of the s
 
-// GLITCH when trying to place on position 0 , 0  - try to figure out why the square dissapears. 
 
 
 import GameBoard from "./gameBoard";
@@ -33,8 +35,36 @@ function dragLeave(){
     console.log('leave')
 }
 
+// work here on the change
+
+let shipsLeftMarker;
+let functionUsed = -1;
+
+
+function changeShipsLeftDescription(){
+    shipsLeftMarker = shipDragging.firstChild.firstChild;
+
+
+    // sorting out ship number here
+
+    let shipsPlaced = selectionBoard.ships.length;
+
+            functionUsed = shipsPlaced;
+            console.log("FU!" + functionUsed);
+            console.log("SP!" + shipsPlaced);
+            let shipsLeftNum = parseInt(shipDragging.firstChild.firstChild.textContent.charAt(0));
+            let shipsLeftNumAfter = shipsLeftNum - 1;
+            shipsLeftMarker.textContent =  shipsLeftNumAfter + "x";
+        
+
+    if(shipsLeftNum === 1){
+        shipDragging.remove();
+    }
+
+}
+
 function dragDrop(){
-    
+        
 this.classList.toggle("over");
 
  const x = this.dataset.x;
@@ -42,19 +72,25 @@ this.classList.toggle("over");
 
  const directionalBtn = document.getElementById('directionalBtn');
 
- if(directionalBtn.textContent === "HORIZONTAL"){
+ if(directionalBtn.textContent === "HORIZONTAL" 
+ && selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip) !== "not acceptable position for the ship"){
     selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
+    changeShipsLeftDescription();
     displayShips(selectionBoard, "select");
- }else{
+    
+// stop here - think about the comparasions and start from clean up!
+// perhaps add x and y to the other function.
+
+ }else if( directionalBtn.textContent === "VERTICAL" 
+ && selectionBoard.placeShipV(parseInt(x), parseInt(y), selectedShip) !== "not acceptable position for the ship"){
     selectionBoard.placeShipV(parseInt(x), parseInt(y), selectedShip);
+    changeShipsLeftDescription();
     displayShips(selectionBoard, "select");
     // console.log(selectedShip);
+    } 
 }
 
-console.log(selectionBoard);
-
-
-}
+// here finish
 
 function changeDirection(){
     if(this.textContent === "VERTICAL"){
@@ -83,14 +119,16 @@ function shipSelectionEventListeners(){
     })
 }
 
+let shipDragging;
 let selectedShip = 0;
 let selectedShipPart = 0;
 
 function dragStart(){
     selectedShip = Ship(this.children.length - 2);
     selectedShipPart = this.children[0];
-    
-    console.log(selectedShip);
+
+    shipDragging = this;
+    console.log(shipDragging);
 }    
 
 
@@ -98,4 +136,4 @@ function dragEnd(){
  }
 
 
-export {selectionBoard, shipSelectionEventListeners};
+export {selectionBoard, shipSelectionEventListeners, changeShipsLeftDescription, functionUsed};

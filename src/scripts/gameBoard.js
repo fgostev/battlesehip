@@ -25,6 +25,7 @@ const GameBoard = () => {
         }
 
 
+
 const placeShipH = (x, y, ship) => {
         const row = board[x];
         const colStart = y;
@@ -50,9 +51,6 @@ const placeShipH = (x, y, ship) => {
     return row;
 }
 
-// check here to adjust ship Id add to the board!!!! 
-
-
 
 const placeShipV = (x, y, ship) => {
 
@@ -60,11 +58,10 @@ const placeShipV = (x, y, ship) => {
         const rowStart = x ;
         const rowEnd = x + shipLength;
         const colEnd = y + ship.size;
-// logic broken! Not row need to be checked, but the column to the ship suze 
+
         if( rowEnd >= board.length ||  
             board[rowStart][y].empty === false || board[rowEnd][y].empty === false)
         {
-            console.log("not acceptable position for the ship")
             return "not acceptable position for the ship";
         }
         else{
@@ -77,7 +74,6 @@ const placeShipV = (x, y, ship) => {
             ships.push(ship);
             ship.shipId = ships.length;
     }
-
     return board;
 }
 
