@@ -20,6 +20,9 @@ import {selectionBoard, shipSelectionEventListeners} from "./shipPlacement";
 // !!!!!!!
 
 
+
+
+
 const shipPlacement = () => {
     const newBoard = GameBoard();
     const carrier = Ship(4);
@@ -43,7 +46,7 @@ const shipPlacement = () => {
 }
 
 
-const player1 = shipPlacement();
+const player1 = selectionBoard;
 const player2 = shipPlacement();
 
 function displayShips (playerBoard, playerGrid) {
@@ -63,13 +66,11 @@ function displayShips (playerBoard, playerGrid) {
 })
 }
 
+
 const game = () => {
 
-    shipSelectionEventListeners();
-
-    displayShips(player1,"human");
-
-
+// display board
+displayShips(player1,"human");
 
 let possibleTargets = player1.board.flat(1);
 

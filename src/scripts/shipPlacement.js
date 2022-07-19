@@ -6,7 +6,7 @@
 
 
 import GameBoard from "./gameBoard";
-import { displayShips } from "./game";
+import { game, displayShips, player1 } from "./game";
 import Ship from "./ship";
 
 
@@ -18,7 +18,6 @@ const selectBoard = document.getElementsByClassName('select');
 
 function dragOver(e){
     e.preventDefault();
-    // console.log(this);
 }
 
 function dragEnter(e){
@@ -37,8 +36,27 @@ function dragLeave(){
 
 // work here on the change
 
+function hideStartContainer(){
+    const startContainer = document.getElementById('startContainer');
+    startContainer.remove();
+}
+
 let shipsLeftMarker;
-let functionUsed = -1;
+
+function startGame(){
+    let shipsPlaced = selectionBoard.ships.length;
+
+    if(shipsPlaced === 7){
+        alert("GAME ON!")
+        game();
+        hideStartContainer();
+        const boardContainer = document.getElementById('boardContainer');
+        boardContainer.style.display = "flex";
+    }else{
+        console.log(shipsPlaced);
+    }
+}
+
 
 
 function changeShipsLeftDescription(){
@@ -47,11 +65,6 @@ function changeShipsLeftDescription(){
 
     // sorting out ship number here
 
-    let shipsPlaced = selectionBoard.ships.length;
-
-            functionUsed = shipsPlaced;
-            console.log("FU!" + functionUsed);
-            console.log("SP!" + shipsPlaced);
             let shipsLeftNum = parseInt(shipDragging.firstChild.firstChild.textContent.charAt(0));
             let shipsLeftNumAfter = shipsLeftNum - 1;
             shipsLeftMarker.textContent =  shipsLeftNumAfter + "x";
@@ -60,12 +73,12 @@ function changeShipsLeftDescription(){
     if(shipsLeftNum === 1){
         shipDragging.remove();
     }
-
 }
 
+
 function dragDrop(){
-        
-this.classList.toggle("over");
+    
+ this.classList.toggle("over");
 
  const x = this.dataset.x;
  const y = this.dataset.y;
@@ -76,19 +89,18 @@ this.classList.toggle("over");
  && selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip) !== "not acceptable position for the ship"){
     selectionBoard.placeShipH(parseInt(x), parseInt(y), selectedShip);
     changeShipsLeftDescription();
-    displayShips(selectionBoard, "select");
-    
-// stop here - think about the comparasions and start from clean up!
-// perhaps add x and y to the other function.
-
+    displayShips(selectionBoard, "select");   
  }else if( directionalBtn.textContent === "VERTICAL" 
  && selectionBoard.placeShipV(parseInt(x), parseInt(y), selectedShip) !== "not acceptable position for the ship"){
     selectionBoard.placeShipV(parseInt(x), parseInt(y), selectedShip);
     changeShipsLeftDescription();
     displayShips(selectionBoard, "select");
-    // console.log(selectedShip);
     } 
+
+startGame();
+
 }
+
 
 // here finish
 
@@ -112,7 +124,6 @@ function shipSelectionEventListeners(){
 
     }
     
-
     Array.from(ships).forEach(ship => {
         ship.addEventListener('dragstart', dragStart);
         ship.addEventListener('dragend', dragEnd);
@@ -136,4 +147,4 @@ function dragEnd(){
  }
 
 
-export {selectionBoard, shipSelectionEventListeners, changeShipsLeftDescription, functionUsed};
+export {selectionBoard, shipSelectionEventListeners, changeShipsLeftDescription};
