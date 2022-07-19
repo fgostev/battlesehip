@@ -17,3 +17,8 @@ Try for the css glirch:
 -new container with the select ships
 -all of them as column
 -whenever on or off change display
+
+
+<!-- IDEA!
+
+went placeship function have a variable that tracks all success placed ships, if more success then before export from that module into the other and use it.  -->
