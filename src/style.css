@@ -43,8 +43,8 @@ header{
 /* game */
 
 #boardContainer{
-    /* display:flex; */
-    display: none;
+    display:flex;
+    /* display: none; */
     justify-content: center;
     align-items: center;
 }
@@ -65,6 +65,12 @@ header{
 .human[data-empty="false"]{
     background-color: red;
 }
+
+/* for testing purpose, delete after */
+.computer[data-empty="false"]{
+    background-color: red;
+}
+/* ..... */
 
 .human[data-damaged="true"]{
     background-color: rgb(10, 10, 10);
