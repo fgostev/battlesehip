@@ -13,9 +13,9 @@ import computerRandomizedShips from "./scripts/computerShipPlacement";
 // stop here
 
 pageLoad();
-// shipSelectionEventListeners();
+shipSelectionEventListeners();
 
-// temp fun for testing
-computerRandomizedShips();
-game();
-// stop here
+// // temp fun for testing
+// computerRandomizedShips();
+// game();
+// // stop here

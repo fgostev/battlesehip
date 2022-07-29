@@ -2,13 +2,6 @@ import GameBoard from "./gameBoard";
 import Ship from "./ship";
 import { shipSelectionEventListeners } from "./shipPlacement";
 
-const destroyer = Ship(1);
-const submarine = Ship(2);
-const cruiser = Ship(3);
-const carrier = Ship(4);
-
-// START THINK AS OBJECT RATHER THAN NUMBERS! THINK ON HOW TO PLACE THE OBJECTS!
-// HOW TO AVOID REPETITION AND EMPTYNESS!
 
 const newBoard = GameBoard();
 
@@ -28,15 +21,16 @@ function horizonOrVertical(board, x, y, type){
 
 function fillWithShips(num, num2, type){
 
-        if(num <= 0 && shipsAmountByType(type.size) === num2) {
+        if(num <= 0 && shipsAmountByType(type) === num2) {
                 console.log("done");
                 return;
         }
-   console.log(num);
-
+     
+   const ship = Ship(type);     
    let x = Math.floor(Math.random() * 10);
    let y = Math.floor(Math.random() * 10);
-   horizonOrVertical(newBoard, x, y, type);
+   horizonOrVertical(newBoard, x, y, ship);
+
    num--;
    fillWithShips(num, num2, type);
 }
@@ -52,13 +46,18 @@ let counter = 0;
 }
 
 function allShips(){
-        fillWithShips(3, 3, destroyer);
-        fillWithShips(2, 2, submarine);
-        fillWithShips(1, 1, cruiser);
-        fillWithShips(1, 1, carrier);
+        fillWithShips(3, 3, 1);
+        fillWithShips(2, 2, 2);
+        fillWithShips(1, 1, 3);
+        fillWithShips(1, 1, 4);
 }
 
+
+
 allShips();
+// idMatchIndex();
+console.log(newBoard.ships)
+
 
 
 const computerRandomizedShips = () => {

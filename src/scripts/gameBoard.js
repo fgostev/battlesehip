@@ -24,8 +24,6 @@ const GameBoard = () => {
             })
         }
 
-
-
 const placeShipH = (x, y, ship) => {
         const row = board[x];
         const colStart = y;
@@ -46,7 +44,7 @@ const placeShipH = (x, y, ship) => {
             })
             ships.push(ship);
             ship.shipId = ships.length;
-            // ship.shipId = col.shipId;
+
         }
     return row;
 }

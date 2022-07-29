@@ -45,8 +45,11 @@ function displayAttacks(){
 
     player2.receiveAttack(x, y);
     player1.receiveAttack(attackAI.positionX, attackAI.positionY);
-// check the display function
 
+console.log(player1.ships);
+
+console.log(player2.areAllShipsSunk());
+console.log(player2.ships);
 
 const winContent = document.getElementsByClassName("winContainer")[0];    
 const winMessage =  document.getElementById("playerWinMessage")
