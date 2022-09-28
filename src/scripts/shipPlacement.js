@@ -6,8 +6,9 @@
 
 
 import GameBoard from "./gameBoard";
-import { game, displayShips, player1 } from "./game";
+import { game, displayShips, player2 } from "./game";
 import Ship from "./ship";
+
 
 
 const selectionBoard = GameBoard();

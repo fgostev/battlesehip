@@ -4,50 +4,11 @@ import Player from "./player";
 import Ship from "./ship";
 import AI from "./AI.js"
 import {selectionBoard, shipSelectionEventListeners} from "./shipPlacement";
-
-
-// now need to work on storage all the attacks
-// need to make all random attacks non repeatable
-
-
-// Start from here - goal is to add coordinates to all items in the dom
-
-//  1 - Carrier 5
-// 1 - Battleship 4
-//  2- Destroyer 3
-// 1 - Patrol 2
-
-// !!!!!!!
-
-
-
-
-
-const shipPlacement = () => {
-    const newBoard = GameBoard();
-    const carrier = Ship(4);
-    const battleship = Ship(3);
-    const destroyer1 = Ship(2);
-    const destroyer2 = Ship(2);
-    const destroyer3 = Ship(2);
-    const patrol1 = Ship(1);
-    const patrol2 = Ship(1);
-    const patrol3 = Ship(1);
-    newBoard.placeShipV(0,0, carrier);
-    newBoard.placeShipV(2,9, battleship);
-    newBoard.placeShipH(2,5, destroyer1);
-    newBoard.placeShipH(0,3, destroyer2);
-    newBoard.placeShipV(5,2, destroyer3);
-    newBoard.placeShipV(5,7, patrol1);
-    newBoard.placeShipH(0,8, patrol2);
-    newBoard.placeShipH(9,2, patrol3);
-
-    return newBoard;   
-}
+import computerRandomizedShips from "./computerShipPlacement";
 
 
 const player1 = selectionBoard;
-const player2 = shipPlacement();
+const player2 =  computerRandomizedShips();
 
 function displayShips (playerBoard, playerGrid) {
     const domBoard = document.getElementsByClassName(playerGrid);
@@ -71,6 +32,8 @@ const game = () => {
 
 // display board
 displayShips(player1,"human");
+displayShips(player2,"computer");
+
 
 let possibleTargets = player1.board.flat(1);
 
@@ -82,8 +45,11 @@ function displayAttacks(){
 
     player2.receiveAttack(x, y);
     player1.receiveAttack(attackAI.positionX, attackAI.positionY);
-// check the display function
 
+console.log(player1.ships);
+
+console.log(player2.areAllShipsSunk());
+console.log(player2.ships);
 
 const winContent = document.getElementsByClassName("winContainer")[0];    
 const winMessage =  document.getElementById("playerWinMessage")
