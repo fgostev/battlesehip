@@ -55,8 +55,6 @@ function allShips(){
 
 
 allShips();
-// idMatchIndex();
-console.log(newBoard.ships)
 
 
 

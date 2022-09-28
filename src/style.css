@@ -76,7 +76,15 @@ header{
     background-color: rgb(10, 10, 10);
 }
 
+.computer[data-damaged="true"]{
+    background-color: rgb(10, 10, 10);
+}
+
 .select[data-empty="false"]{
+    background-color: red;
+}
+
+.human[data-empty="false"]{
     background-color: red;
 }
 

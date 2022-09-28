@@ -97,6 +97,8 @@ test('check if ship hp changes and if is sunk', () =>{
   newBoard.receiveAttack(2,5);
   newBoard.receiveAttack(2,6);
 
-
+ const newKeyboard = () => {
+    console.log("poop!");
+ }
   expect(newBoard.ships[0].isSunk()).toBe(true);
 });

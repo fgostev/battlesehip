@@ -2,23 +2,9 @@ Battleship project
 
 ---Work in Progress---
 
--ship placement figure out
--create a container that will be the start page
--in the container will need:
-1) board
-2) figure that is getting placed
-3) button for reverse and not
-4) once everything is placed close and start game
+For today:
 
+-Make proper display when shot on enemies board. Currently it doesn't change the status for shot.
 
-
-Try for the css glirch:
-
--new container with the select ships
--all of them as column
--whenever on or off change display
-
-
-<!-- IDEA!
-
-went placeship function have a variable that tracks all success placed ships, if more success then before export from that module into the other and use it.  -->
+Solution:
+Find function responsible for that and fix. 
