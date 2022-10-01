@@ -58,7 +58,7 @@ header{
 .grid{
     height: 2rem;
     width: 2rem;
-    background-color: #555;
+    background-color: rgba(85, 85, 85, 0.745);
     border: 1px solid rgba(80, 71, 71, 0.918);
 }
 
@@ -81,10 +81,6 @@ header{
 }
 
 .select[data-empty="false"]{
-    background-color: red;
-}
-
-.human[data-empty="false"]{
     background-color: red;
 }
 

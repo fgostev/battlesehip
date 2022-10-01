@@ -14,10 +14,6 @@ function horizonOrVertical(board, x, y, type){
         }
 }
 
-// num1 for iteration, num 2 as a constant. 
-
-
-// try to approach with pushing ships. 
 
 function fillWithShips(num, num2, type){
 
