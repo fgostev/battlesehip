@@ -30,7 +30,9 @@ const placeShipH = (x, y, ship) => {
         const colEnd = y + ship.size;
 
         if( x >= board.length || colEnd >= board.length ||
-            row[colStart].empty === false || row[colEnd].empty === false)
+            row[colStart].empty === false || row[colEnd].empty === false||
+            row[colStart + 1].empty === false || row[colEnd - 1].empty  === false || 
+            ship.size === 4 && row[colStart + 2].empty === false )
         {
             console.log("nope");
             return "not acceptable position for the ship";
@@ -57,8 +59,11 @@ const placeShipV = (x, y, ship) => {
         const rowEnd = x + shipLength;
         const colEnd = y + ship.size;
 
-        if( rowEnd >= board.length ||  
-            board[rowStart][y].empty === false || board[rowEnd][y].empty === false)
+        if (rowEnd >= board.length ||  
+            board[rowStart][y].empty === false || board[rowEnd][y].empty === false ||
+            board[rowStart + 1][y].empty === false || board[rowEnd - 1][y].empty === false ||
+            ship.size === 4 && board[rowStart + 2][y].empty === false
+            )
         {
             return "not acceptable position for the ship";
         }

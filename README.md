@@ -2,9 +2,6 @@ Battleship project
 
 ---Work in Progress---
 
-For today:
+Start the day with:
 
--Make proper display when shot on enemies board. Currently it doesn't change the status for shot.
-
-Solution:
-Find function responsible for that and fix. 
+-The bug comes from the ship positioning : some ship sometimes crosses other trough. Need to figure out why. 
