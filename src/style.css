@@ -63,7 +63,7 @@ header{
 }
 
 .human[data-empty="false"]{
-    background-color: red;
+    background-color: rgba(255, 255, 255, 0.676);
 }
 
 /* for testing purpose, delete after */
@@ -81,7 +81,7 @@ header{
 }
 
 .select[data-empty="false"]{
-    background-color: red;
+    background-color: rgba(255, 255, 255, 0.676);
 }
 
 [data-was-shot="true"]{
@@ -96,10 +96,9 @@ header{
     background-color: palevioletred;
 }
 
-/* win modal */
-
 .winContainer{
-    display: none;
+    background: url(../src/imgs/BG_1.jpeg) no-repeat center center fixed; 
+    display: flex;
     position: fixed;
     z-index: 1;
     left: 0; 
@@ -110,24 +109,53 @@ header{
     color: rgb(75, 120, 115);
     animation-name: modalopen;
     animation-duration: 0.5s; 
-    background-color: rgba(162, 157, 156);
 }
   
 #winContent{
-    background-color: #8c6161be;
+    background-color: #8a8a8a73;
     position: absolute;
-    top: 30%;
-    left: 50%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    left: 10%;
+    right: 10%;
+    text-align: center;
+    top: 20%;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
     0 7px 20px 0 rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     flex-flow: column wrap;
-    font-family: 'Just Another Hand', cursive;
     border-radius: 10px;
   }
 
+#playerWinMessage{
+    font-size: 70px;
+    color: rgba(0, 0, 0, 0.656);
+    margin-bottom: 20px;
+    margin-bottom: 0%;
+}
+
+  #shipIcon{
+    margin-top: 0%;
+    margin-bottom: 5%;
+    width: 40%;
+    height: 40%;
+  }
+
+#restartGameBtn{
+    position: fixed;
+    right: 11%;
+    padding-top: 10px;
+    font-size: 30px;
+    padding-right: 5px;
+    color: rgb(106, 106, 106);
+    outline: none;
+}
+
+#restartGameBtn:hover{
+    filter:brightness(50%);
+}
+
 .over {
     background-color: green;   
-}
+} 

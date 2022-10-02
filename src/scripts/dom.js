@@ -73,11 +73,8 @@ const createBoard = (player) => {
 return container;
 }
 
-function closeWindow(){
-    console.log("close")
-}
-
 function restartGame(){
+    window.location.reload();
     console.log("Restart game!");
 }
 
@@ -91,22 +88,23 @@ function winMessage(){
 
     const playerMessage = document.createElement("p");
     playerMessage.id = "playerWinMessage";
-    playerMessage.textContent = `somebody WON!`;
+    playerMessage.textContent = `YOU WON!`;
 
-    const closeBtn = document.createElement("button");
-    closeBtn.id = "closeBtn";
-    closeBtn.textContent = "x";
+    const shipIcon = document.createElement('img');
+    shipIcon.src =    "../../src/imgs/warShip.png";
+    shipIcon.id = "shipIcon";
+    
+    // "https://cdn.pixabay.com/photo/2013/07/12/12/46/war-ship-146209_1280.png"
 
-    const restartBtn = document.createElement('button');
+    const restartBtn = document.createElement('span');
     restartBtn.id = "restartGameBtn";
     const restartIcon = document.createElement("i");
     restartIcon.classList = "fas fa-redo";
     restartBtn.append(restartIcon);
 
-    closeBtn.addEventListener("click", closeWindow);
     restartBtn.addEventListener("click", restartGame);
 
-    content.append(closeBtn, playerMessage, restartBtn);
+    content.append(restartBtn, playerMessage ,shipIcon);
     modal.append(content);
     return modal;
 }
