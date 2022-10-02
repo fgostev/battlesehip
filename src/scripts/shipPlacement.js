@@ -42,14 +42,19 @@ function hideStartContainer(){
     startContainer.remove();
 }
 
+function displayBoards(){
+    const boardContainer = document.getElementById('boardContainer');
+    boardContainer.style.display = "flex";
+}
+
 let shipsLeftMarker;
 
 function startGame(){
     let shipsPlaced = selectionBoard.ships.length;
 
     if(shipsPlaced === 7){
-        alert("GAME ON!")
         game();
+        displayBoards();
         hideStartContainer();
         const boardContainer = document.getElementById('boardContainer');
         boardContainer.style.display = "flex";
