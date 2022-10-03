@@ -18,7 +18,6 @@ function horizonOrVertical(board, x, y, type){
 function fillWithShips(num, num2, type){
 
         if(num <= 0 && shipsAmountByType(type) === num2) {
-                console.log("done");
                 return;
         }
      

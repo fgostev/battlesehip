@@ -1,9 +1,3 @@
-// need to create a function that:
-// tracks the amount of each ship placed
-// once hits a specific amounts of ships placed - no more ships
-// while placing each ship the number in front of the s
-
-
 
 import GameBoard from "./gameBoard";
 import { game, displayShips, player2 } from "./game";
@@ -24,15 +18,10 @@ function dragOver(e){
 function dragEnter(e){
     e.preventDefault();
     this.classList.add("over");
-
-    console.log(this.dataset);
-    console.log("enter");
-    console.log(selectedShip.size);
 }
 
 function dragLeave(){
     this.classList.toggle("over");
-    console.log('leave')
 }
 
 // work here on the change
@@ -42,19 +31,22 @@ function hideStartContainer(){
     startContainer.remove();
 }
 
+function displayBoards(){
+    const boardContainer = document.getElementById('boardContainer');
+    boardContainer.style.display = "flex";
+}
+
 let shipsLeftMarker;
 
 function startGame(){
     let shipsPlaced = selectionBoard.ships.length;
 
     if(shipsPlaced === 7){
-        alert("GAME ON!")
         game();
+        displayBoards();
         hideStartContainer();
         const boardContainer = document.getElementById('boardContainer');
         boardContainer.style.display = "flex";
-    }else{
-        console.log(shipsPlaced);
     }
 }
 
@@ -127,7 +119,6 @@ function shipSelectionEventListeners(){
     
     Array.from(ships).forEach(ship => {
         ship.addEventListener('dragstart', dragStart);
-        ship.addEventListener('dragend', dragEnd);
     })
 }
 
@@ -140,12 +131,9 @@ function dragStart(){
     selectedShipPart = this.children[0];
 
     shipDragging = this;
-    console.log(shipDragging);
 }    
 
 
-function dragEnd(){
- }
 
 
 export {selectionBoard, shipSelectionEventListeners, changeShipsLeftDescription};

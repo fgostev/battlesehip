@@ -48,7 +48,11 @@ const createInitialPage = () => {
     const destroyer = shipGenerator(2,3)
     const patrol = shipGenerator(3,2);
 
-    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol);
+    const dragAndDropInfo = document.createElement('p');
+    dragAndDropInfo.id = "dragAndDropInfo"
+    dragAndDropInfo.textContent = "Drag and drop a ship to the board, click on the HORIZONTAL button to change direction."
+
+    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol, dragAndDropInfo);
     startContainer.append(boardSelect, shipReferenceContainer);
     return startContainer;
 }
@@ -73,11 +77,8 @@ const createBoard = (player) => {
 return container;
 }
 
-function closeWindow(){
-    console.log("close")
-}
-
 function restartGame(){
+    window.location.reload();
     console.log("Restart game!");
 }
 
@@ -91,22 +92,23 @@ function winMessage(){
 
     const playerMessage = document.createElement("p");
     playerMessage.id = "playerWinMessage";
-    playerMessage.textContent = `somebody WON!`;
+    playerMessage.textContent = `YOU WON!`;
 
-    const closeBtn = document.createElement("button");
-    closeBtn.id = "closeBtn";
-    closeBtn.textContent = "x";
+    const shipIcon = document.createElement('img');
+    shipIcon.src =    "../../src/imgs/warShip.png";
+    shipIcon.id = "shipIcon";
+    
+    // "https://cdn.pixabay.com/photo/2013/07/12/12/46/war-ship-146209_1280.png"
 
-    const restartBtn = document.createElement('button');
+    const restartBtn = document.createElement('span');
     restartBtn.id = "restartGameBtn";
     const restartIcon = document.createElement("i");
     restartIcon.classList = "fas fa-redo";
     restartBtn.append(restartIcon);
 
-    closeBtn.addEventListener("click", closeWindow);
     restartBtn.addEventListener("click", restartGame);
 
-    content.append(closeBtn, playerMessage, restartBtn);
+    content.append(restartBtn, playerMessage ,shipIcon);
     modal.append(content);
     return modal;
 }

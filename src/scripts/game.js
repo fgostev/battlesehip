@@ -46,19 +46,15 @@ function displayAttacks(){
     player2.receiveAttack(x, y);
     player1.receiveAttack(attackAI.positionX, attackAI.positionY);
 
-console.log(player1.ships);
-
-console.log(player2.areAllShipsSunk());
-console.log(player2.ships);
 
 const winContent = document.getElementsByClassName("winContainer")[0];    
 const winMessage =  document.getElementById("playerWinMessage")
     if(player1.areAllShipsSunk()){
         winContent.style.display = "block";
-        winMessage.textContent = `Player 2 WON!`;
+        winMessage.textContent = `You lost!`;
     }else if(player2.areAllShipsSunk()){
         winContent.style.display = "block";
-        winMessage.textContent = `Player 1 WON!`;
+        winMessage.textContent = `You won!`;
     }
 
     displayShips(player1, "human")

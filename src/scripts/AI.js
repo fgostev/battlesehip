@@ -3,7 +3,7 @@ import {player1} from "./game";
 import {player2} from "./game";
 
 // possible targets equals the whole array
-// to shoot something equals ranomized array length
+// to shoot something equals randomized array length
 // once something in the array is shot - it gets away from the possible targets
 // shoot the object
 
