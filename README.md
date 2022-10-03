@@ -1,7 +1,7 @@
 Battleship project
 
----Work in Progress---
+Live at @https://fgostev.github.io/battlesehip/
 
-Start the day with:
+Battleship game project, used webpack and testing during developing it. 
 
--The bug comes from the ship positioning : some ship sometimes crosses other trough. Need to figure out why. 
+

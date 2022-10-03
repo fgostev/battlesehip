@@ -95,10 +95,9 @@ function winMessage(){
     playerMessage.textContent = `YOU WON!`;
 
     const shipIcon = document.createElement('img');
-    shipIcon.src =    "../../src/imgs/warShip.png";
+    shipIcon.src =    "https://cdn.pixabay.com/photo/2013/07/12/12/46/war-ship-146209_1280.png"
     shipIcon.id = "shipIcon";
-    
-    // "https://cdn.pixabay.com/photo/2013/07/12/12/46/war-ship-146209_1280.png"
+
 
     const restartBtn = document.createElement('span');
     restartBtn.id = "restartGameBtn";
