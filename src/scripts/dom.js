@@ -48,7 +48,11 @@ const createInitialPage = () => {
     const destroyer = shipGenerator(2,3)
     const patrol = shipGenerator(3,2);
 
-    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol);
+    const dragAndDropInfo = document.createElement('p');
+    dragAndDropInfo.id = "dragAndDropInfo"
+    dragAndDropInfo.textContent = "Drag and drop a ship to the board, click on the HORIZONTAL button to change direction."
+
+    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol, dragAndDropInfo);
     startContainer.append(boardSelect, shipReferenceContainer);
     return startContainer;
 }

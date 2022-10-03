@@ -6,22 +6,71 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: 'Montserrat', sans-serif;  
+    font-family: 'Quicksand', sans-serif;
 }
 
 header{
     text-align: center;
 }
 
+h1{
+    font-size: 4rem;
+    color: rgba(136, 131, 131, 0.905);
+    text-shadow: 2px 2px #4b2727;
+}
+
 /* game selection */
 
 #startContainer{
     display: flex;
+    justify-content: center;
  } 
 
- #selectBoard{
-     padding-left: 5%;
+ #shipDescriptionContainer{
+    padding-left: 20px;
+    margin-bottom: 0;
  }
+
+ .amountDescription{
+    color:rgb(0, 0, 0);
+    text-shadow: 1px 1px #ffffff;
+    padding-right: 5px;
+    font-size: 1.2rem;
+    margin-top: 3%;
+ }
+
+ #directionalBtn{
+  align-items: center;
+  appearance: none;
+  background-color: #24242b48;
+  border-radius: 2px;
+  border-width: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 38px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  margin-left: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+  color:white;
+  text-shadow: 2px 2px #4b2727;
+  margin-right: 30px;
+}
+
+#directionalBtn:hover{
+    background-color: #24242b72;
+}
+
+#dragAndDropInfo{
+    font-size: 16px;
+  text-shadow: 1px 1px #ffffff;
+}
+
 
  .select:hover{
     background-color:red;
@@ -36,14 +85,12 @@ header{
     height: 30px;
     width: 30px;
     background-color: rgb(112, 108, 108);
-    /* margin-top: 10px; */
 }
 
 
 /* game */
 
 #boardContainer{
-    /* display:flex; */
     display: none;
     justify-content: center;
     align-items: center;
@@ -52,12 +99,12 @@ header{
 .board{
     display: grid;
     grid-template-columns: repeat(10, 0fr);
-    padding-right: 20px;
+    padding-right: 20px; 
 }
 
 .grid{
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     background-color: rgba(85, 85, 85, 0.745);
     border: 1px solid rgba(80, 71, 71, 0.918);
 }
@@ -65,12 +112,6 @@ header{
 .human[data-empty="false"]{
     background-color: rgba(255, 255, 255, 0.676);
 }
-
-/* for testing purpose, delete after */
-.computer[data-empty="false"]{
-    background-color: red;
-}
-/* ..... */
 
 .human[data-damaged="true"]{
     background-color: rgb(10, 10, 10);
@@ -96,9 +137,13 @@ header{
     background-color: palevioletred;
 }
 
+.over {
+    background-color: green;   
+} 
+
 .winContainer{
     background: url(../src/imgs/BG_1.jpeg) no-repeat center center fixed; 
-    display: flex;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0; 
@@ -130,9 +175,12 @@ header{
 
 #playerWinMessage{
     font-size: 70px;
-    color: rgba(0, 0, 0, 0.656);
+    color: rgb(255, 255, 255);
     margin-bottom: 20px;
     margin-bottom: 0%;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 2px 2px #4b2727;
+
 }
 
   #shipIcon{
@@ -154,8 +202,6 @@ header{
 
 #restartGameBtn:hover{
     filter:brightness(50%);
+    cursor: pointer;
 }
 
-.over {
-    background-color: green;   
-} 

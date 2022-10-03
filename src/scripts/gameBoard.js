@@ -1,10 +1,5 @@
 import  Ship from "./ship.js"   
 
-//  dot equals miss
-//  x equals hit
-//  ! equals have a ship
-
-
 const GameBoard = () => {
     let board = [];
     let ships = [];
@@ -34,7 +29,6 @@ const placeShipH = (x, y, ship) => {
             row[colStart + 1].empty === false || row[colEnd - 1].empty  === false || 
             ship.size === 4 && row[colStart + 2].empty === false )
         {
-            console.log("nope");
             return "not acceptable position for the ship";
         } 
         else{
