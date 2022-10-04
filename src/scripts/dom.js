@@ -39,6 +39,9 @@ const createInitialPage = () => {
     directionalBtn.textContent = "HORIZONTAL"
     directionalBtn.id = "directionalBtn";
 
+    const rightSideContainer = document.createElement('div');
+    rightSideContainer.id = "rightSide";
+
     const shipReferenceContainer = document.createElement('div');
     shipReferenceContainer.id = "shipDescriptionContainer";
     const text = document.createElement('p');
@@ -52,8 +55,9 @@ const createInitialPage = () => {
     dragAndDropInfo.id = "dragAndDropInfo"
     dragAndDropInfo.textContent = "Drag and drop a ship to the board, click on the HORIZONTAL button to change direction."
 
-    shipReferenceContainer.append(directionalBtn, text, carrier, battleship, destroyer, patrol, dragAndDropInfo);
-    startContainer.append(boardSelect, shipReferenceContainer);
+    shipReferenceContainer.append(carrier, battleship, destroyer, patrol);
+    rightSideContainer.append(directionalBtn, text, shipReferenceContainer, dragAndDropInfo)
+    startContainer.append(boardSelect, rightSideContainer);
     return startContainer;
 }
 

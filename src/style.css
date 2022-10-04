@@ -29,6 +29,7 @@ h1{
  #shipDescriptionContainer{
     padding-left: 20px;
     margin-bottom: 0;
+    display: flex;
  }
 
  .amountDescription{
@@ -76,8 +77,11 @@ h1{
     background-color:red;
  }
 
+
 .shipSelect{
      display: flex; 
+     flex-direction: row;
+     padding-left: 10px;
  }
 
 .part{
@@ -87,6 +91,12 @@ h1{
     background-color: rgb(112, 108, 108);
 }
 
+
+.rotated {
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    padding-right: 20px;
+    }
 
 /* game */
 

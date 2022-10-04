@@ -94,20 +94,28 @@ startGame();
 
 }
 
-
 // here finish
 
-function changeDirection(){
-    if(this.textContent === "VERTICAL"){
-        this.textContent = "HORIZONTAL";
-    }else{
-        this.textContent = "VERTICAL";
-    }
-}
 
 function shipSelectionEventListeners(){
     const directionalBtn = document.getElementById('directionalBtn')
-    directionalBtn.addEventListener('click', changeDirection);
+    const ship1 = document.getElementsByClassName('shipSelect')[0];
+    const ship2 = document.getElementsByClassName('shipSelect')[1];
+    const ship3 = document.getElementsByClassName('shipSelect')[2];
+    const ship4 = document.getElementsByClassName('shipSelect')[3];
+
+    directionalBtn.addEventListener('click', () =>{
+        if(directionalBtn.textContent === "VERTICAL"){
+            directionalBtn.textContent = "HORIZONTAL";
+        }else{
+            directionalBtn.textContent = "VERTICAL";
+        }
+        ship1.classList.toggle('rotated')
+        ship2.classList.toggle('rotated')
+        ship3.classList.toggle('rotated')
+        ship4.classList.toggle('rotated')
+    });
+
 
     for(const grid of selectBoard){
         grid.addEventListener('dragover', dragOver);
